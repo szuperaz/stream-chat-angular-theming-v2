@@ -1,0 +1,30 @@
+<div id="root">
+  <div class="level-selector">
+    Select a customization level:
+    <button
+      *ngFor="let level of levels; let i = index"
+      (click)="selectedLevelIndex = i"
+      [class.selected]="selectedLevelIndex === i"
+    >
+      {{ level }}
+    </button>
+  </div>
+  <div
+    id="chat-root"
+    [class.global-theme-variables]="selectedLevelIndex >= 1"
+    [class.component-theme-variables]="selectedLevelIndex >= 2"
+    [class.custom-css-code]="selectedLevelIndex >= 3"
+  >
+    <stream-channel-list></stream-channel-list>
+    <stream-channel>
+      <stream-channel-header></stream-channel-header>
+      <stream-message-list></stream-message-list>
+      <stream-notification-list></stream-notification-list>
+      <stream-message-input></stream-message-input>
+      <stream-thread name="thread">
+        <stream-message-list mode="thread"></stream-message-list>
+        <stream-message-input mode="thread"></stream-message-input>
+      </stream-thread>
+    </stream-channel>
+  </div>
+</div>
